@@ -9,8 +9,9 @@ export default function Button(props: IProps) {
       className={classNames(
         "w-full items-center rounded-full p-[1rem] text-center text-lg font-bold",
         {
-          ["bg-blue-600"]: props.variant === "primary",
-        }
+          ["bg-blue-500"]: props.variant === "primary",
+        },
+        props.className
       )}
     >
       {props.children}

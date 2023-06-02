@@ -10,55 +10,61 @@ import { UserButton } from "@clerk/clerk-react";
 
 export default function LeftNav() {
   return (
-    <ul className="flex min-h-screen flex-col gap-[1rem]">
-      <li>
-        <BsTwitter className="ml-[0.75rem]" color="white" size={"32"} />
-      </li>
-      <li>
-        <NavLink to="/home" text="Home" icon={<IoMdHome size={"28"} />} />
-      </li>
-      <li>
-        <NavLink to="/explore" text="Explore" icon={<BiHash size={"28"} />} />
-      </li>
-      <li>
-        <NavLink
-          to="/notifications"
-          text="Notifications"
-          icon={<BsBellFill size={"28"} />}
-        />
-      </li>
-      <li>
-        <NavLink
-          to="/messages"
-          text="Messages"
-          icon={<AiOutlineMail color="white" size={"28"} />}
-        />
-      </li>
-      <li>
-        <NavLink
-          to="/lists"
-          text="Lists"
-          icon={<RiFileList2Line color="white" size={"28"} />}
-        />
-      </li>
-      <li>
-        <NavLink
-          to="/bookmarks"
-          text="Bookmarks"
-          icon={<BsBookmarkFill color="white" size={"28"} />}
-        />
-      </li>
-      <li>
-        <NavLink
-          to="/profile"
-          text="Profile"
-          icon={<CgProfile color="white" size={"28"} />}
-        />
-      </li>
-      <li>
-        <Button variant="primary">Tweet</Button>
-      </li>
-      <li className="mb-[3rem] mt-auto">
+    <div className="fixed bottom-0 left-0 top-0 flex h-[100%] w-[30%] border border-slate-900 py-[1rem]">
+      <div className="ml-auto flex w-1/2 flex-col items-start gap-[1rem] px-[0.5rem]">
+        <ul className="flex flex-col gap-[1rem]">
+          <li>
+            <BsTwitter className="ml-[0.75rem]" color="white" size={"32"} />
+          </li>
+          <li>
+            <NavLink to="/home" text="Home" icon={<IoMdHome size={"28"} />} />
+          </li>
+          <li>
+            <NavLink
+              to="/explore"
+              text="Explore"
+              icon={<BiHash size={"28"} />}
+            />
+          </li>
+          <li>
+            <NavLink
+              to="/notifications"
+              text="Notifications"
+              icon={<BsBellFill size={"28"} />}
+            />
+          </li>
+          <li>
+            <NavLink
+              to="/messages"
+              text="Messages"
+              icon={<AiOutlineMail color="white" size={"28"} />}
+            />
+          </li>
+          <li>
+            <NavLink
+              to="/lists"
+              text="Lists"
+              icon={<RiFileList2Line color="white" size={"28"} />}
+            />
+          </li>
+          <li>
+            <NavLink
+              to="/bookmarks"
+              text="Bookmarks"
+              icon={<BsBookmarkFill color="white" size={"28"} />}
+            />
+          </li>
+          <li>
+            <NavLink
+              to="/profile"
+              text="Profile"
+              icon={<CgProfile color="white" size={"28"} />}
+            />
+          </li>
+        </ul>
+        <Button className="mt-[1rem]" variant="primary">
+          Tweet
+        </Button>
         <UserButton
           afterSignOutUrl="/"
           showName
@@ -67,11 +73,12 @@ export default function LeftNav() {
               userButtonOuterIdentifier:
                 "text-slate-100 font-bold text-lg order-2",
               avatarBox: "h-[48px] w-[48px]",
-              userButtonBox: "flex gap-[1rem] items-start",
+              userButtonBox: "flex gap-[1rem] mt-auto items-start",
+              rootBox: "mt-auto",
             },
           }}
         />
-      </li>
-    </ul>
+      </div>
+    </div>
   );
 }
