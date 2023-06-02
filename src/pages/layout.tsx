@@ -1,4 +1,4 @@
-import { SignedIn, UserButton } from "@clerk/nextjs";
+import { SignedIn } from "@clerk/nextjs";
 import LeftNav from "./layouts/LeftNav";
 import { Inconsolata } from "next/font/google";
 import classNames from "classnames";
