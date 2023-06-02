@@ -1,4 +1,4 @@
-import { SignedIn } from "@clerk/nextjs";
+import { SignedIn, useUser } from "@clerk/nextjs";
 import LeftNav from "./layouts/LeftNav";
 import { Inconsolata } from "next/font/google";
 import classNames from "classnames";
@@ -9,17 +9,29 @@ const inconsolata = Inconsolata({
 });
 
 export default function Layout(props: React.PropsWithChildren) {
+  const user = useUser();
   return (
     <>
-      <section className={classNames("flex gap-0", inconsolata.className)}>
-        <div className="basis-[30%]">
-          <SignedIn>
+      <section
+        className={classNames(
+          "flex items-center gap-0 p-[2rem]",
+          inconsolata.className
+        )}
+      >
+        <SignedIn>
+          <div className="basis-[30%]">
             <LeftNav />
-          </SignedIn>
-        </div>
-        <div className="basis-[70%]">
-          <main className="p-[2rem]">{props.children}</main>
-        </div>
+          </div>
+        </SignedIn>
+
+        <main
+          className={classNames({
+            ["basis-[70%]"]: !!user.isSignedIn,
+            ["basis-[100%]"]: !user.isSignedIn,
+          })}
+        >
+          {props.children}
+        </main>
       </section>
       <footer></footer>
     </>
