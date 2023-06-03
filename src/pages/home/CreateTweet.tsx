@@ -1,18 +1,32 @@
 "use client";
 
 import { useUser } from "@clerk/clerk-react";
-import type { ChangeEventHandler } from "react";
+import { ChangeEventHandler, useEffect, useRef } from "react";
 import { useState } from "react";
 import Avatar from "~/components/Avatar/Avatar";
 import TextBox from "~/components/TextBox/TextBox";
-import { FiImage } from "react-icons/fi";
 import Button from "~/components/Button/Button";
 import { api } from "~/utils/api";
+import { UploadMedia } from "~/components/UploadMedia/UploadMedia";
+import { useQueryClient } from "@tanstack/react-query";
+import { getQueryKey } from "@trpc/react-query";
 
-export default function TweetSection() {
+export default function CreateTweet() {
   const [tweet, setTweet] = useState<string>("");
-  const createTweets = api.tweets.create.useMutation();
-
+  const tweetBoxRef = useRef<HTMLTextAreaElement>(null);
+  const queryClient = useQueryClient();
+  const tweetsKey = getQueryKey(api.tweets.getFirstTen, undefined, "query");
+  const createTweets = api.tweets.create.useMutation({
+    onSuccess: async () => {
+      if (tweetBoxRef.current) {
+        tweetBoxRef.current.value = "";
+      }
+      await queryClient.refetchQueries(tweetsKey);
+      setTweet("");
+      setActiveMedia("");
+    },
+  });
+  const [activeMedia, setActiveMedia] = useState<string>();
   const user = useUser();
   if (!user.isSignedIn) {
     return null;
@@ -25,6 +39,7 @@ export default function TweetSection() {
   const onTweetClick = () => {
     createTweets.mutate({
       content: tweet,
+      mediaUrl: activeMedia,
     });
   };
 
@@ -37,13 +52,17 @@ export default function TweetSection() {
         />
       </div>
       <div className="flex flex-grow basis-[90%] flex-col gap-[0.25rem]">
-        <TextBox placeholder="What is happening ?" onChange={onTweetChange} />
+        <TextBox
+          ref={tweetBoxRef}
+          placeholder="What is happening ?"
+          onChange={onTweetChange}
+        />
+        {activeMedia && <img src={activeMedia} alt="uploaded media" />}
         <div className="flex border-t border-slate-800 px-[1rem] pt-[1rem]">
-          <FiImage
-            className="cursor-pointer"
-            title="media"
-            color="#1d9bf0"
-            size={18}
+          <UploadMedia
+            onUploadComplete={(url) => {
+              setActiveMedia(url);
+            }}
           />
           <Button
             onClick={onTweetClick}

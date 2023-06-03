@@ -1,5 +1,5 @@
 import Tabs from "~/components/Tabs/Tabs";
-import TweetSection from "./TweetSection";
+import CreateTweet from "./CreateTweet";
 import AllTweets from "./AllTweets";
 
 export default function Home() {
@@ -12,7 +12,7 @@ export default function Home() {
             case "For you": {
               return (
                 <div>
-                  <TweetSection />
+                  <CreateTweet />
                   <AllTweets from="For you" />
                 </div>
               );

@@ -7,8 +7,8 @@
  * need to use are documented accordingly near the end.
  */
 import {
-  SignedInAuthObject,
-  SignedOutAuthObject,
+  type SignedInAuthObject,
+  type SignedOutAuthObject,
   getAuth,
 } from "@clerk/nextjs/server";
 import { TRPCError, initTRPC } from "@trpc/server";
