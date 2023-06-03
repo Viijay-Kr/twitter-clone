@@ -10,7 +10,7 @@ import { UserButton } from "@clerk/clerk-react";
 
 export default function LeftNav() {
   return (
-    <div className="fixed bottom-0 left-0 top-0 flex h-[100%] w-[30%] border border-slate-900 py-[1rem]">
+    <div className="fixed bottom-0 left-0 top-0 flex h-[100%] w-[30%] border border-slate-800 py-[1rem]">
       <div className="ml-auto flex w-1/2 flex-col items-start gap-[1rem] px-[0.5rem]">
         <ul className="flex flex-col gap-[1rem]">
           <li>
@@ -62,7 +62,7 @@ export default function LeftNav() {
             />
           </li>
         </ul>
-        <Button className="mt-[1rem]" variant="primary">
+        <Button className="mt-[1rem] w-full py-[0.5rem]" variant="primary">
           Tweet
         </Button>
         <UserButton

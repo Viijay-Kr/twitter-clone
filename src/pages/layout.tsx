@@ -14,24 +14,30 @@ export default function Layout(props: React.PropsWithChildren) {
     <>
       <section
         className={classNames(
-          "flex items-center gap-0 p-[2rem]",
+          "flex items-center gap-0 p-[1rem]",
           inconsolata.className
         )}
       >
         <SignedIn>
-          <div className="basis-[30%]">
+          <div className="basis-[25%]">
             <LeftNav />
           </div>
         </SignedIn>
 
         <main
-          className={classNames({
-            ["basis-[70%]"]: !!user.isSignedIn,
-            ["basis-[100%]"]: !user.isSignedIn,
-          })}
+          className={classNames(
+            "ml-[4.5%] min-h-screen border-r border-slate-800",
+            {
+              ["basis-[40%]"]: !!user.isSignedIn,
+              ["basis-[100%]"]: !user.isSignedIn,
+            }
+          )}
         >
           {props.children}
         </main>
+        <SignedIn>
+          <div className="basis-[25%] border-l border-slate-800"></div>
+        </SignedIn>
       </section>
       <footer></footer>
     </>

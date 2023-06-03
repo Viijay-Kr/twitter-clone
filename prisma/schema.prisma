@@ -8,7 +8,20 @@ datasource db {
     relationMode = "prisma"
 }
 
-model Example {
-    id   String @id @unique
-    name String
+model User {
+    id        String  @id @unique
+    following User[]  @relation("UserFollows")
+    followers User[]  @relation("UserFollows")
+    Tweet     Tweet[] @relation("AuthoredTweets")
+    bookmarks Tweet[] @relation("BookmarkedTweets")
+}
+
+model Tweet {
+    id           String @id @unique @default(cuid())
+    content      String @db.VarChar(140)
+    author       User   @relation(name: "AuthoredTweets", fields: [userId], references: [id])
+    userId       String
+    bookmarkedBy User[] @relation("BookmarkedTweets")
+
+    @@index([userId])
 }

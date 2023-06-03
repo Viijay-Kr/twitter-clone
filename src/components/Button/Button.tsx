@@ -6,10 +6,11 @@ interface IProps extends React.ComponentProps<"button"> {
 export default function Button(props: IProps) {
   return (
     <button
+      {...props}
       className={classNames(
-        "w-full items-center rounded-full p-[1rem] text-center text-lg font-bold",
+        "items-center rounded-full  text-center text-lg font-bold ",
         {
-          ["bg-blue-500"]: props.variant === "primary",
+          ["bg-blue-500 hover:bg-blue-400"]: props.variant === "primary",
         },
         props.className
       )}
