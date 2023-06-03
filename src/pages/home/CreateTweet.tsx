@@ -1,8 +1,8 @@
 "use client";
 
 import { useUser } from "@clerk/clerk-react";
-import { ChangeEventHandler, useEffect, useRef } from "react";
-import { useState } from "react";
+import type { ChangeEventHandler } from "react";
+import { useState, useRef } from "react";
 import Avatar from "~/components/Avatar/Avatar";
 import TextBox from "~/components/TextBox/TextBox";
 import Button from "~/components/Button/Button";
