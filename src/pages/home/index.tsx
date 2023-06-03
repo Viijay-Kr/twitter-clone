@@ -1,5 +1,6 @@
 import Tabs from "~/components/Tabs/Tabs";
 import TweetSection from "./TweetSection";
+import AllTweets from "./AllTweets";
 
 export default function Home() {
   return (
@@ -12,6 +13,7 @@ export default function Home() {
               return (
                 <div>
                   <TweetSection />
+                  <AllTweets from="For you" />
                 </div>
               );
             }
