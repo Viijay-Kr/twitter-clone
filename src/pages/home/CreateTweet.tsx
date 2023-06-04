@@ -57,7 +57,9 @@ export default function CreateTweet() {
           placeholder="What is happening ?"
           onChange={onTweetChange}
         />
-        {activeMedia && <img src={activeMedia} alt="uploaded media" />}
+        {activeMedia && (
+          <img className="rounded" src={activeMedia} alt="uploaded media" />
+        )}
         <div className="flex border-t border-slate-800 px-[1rem] pt-[1rem]">
           <UploadMedia
             onUploadComplete={(url) => {

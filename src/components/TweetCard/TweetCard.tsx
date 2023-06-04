@@ -19,23 +19,28 @@ export default function TweetCard(props: IProps) {
         alt={props.user.userName ?? "anonymous"}
       />
       <div className="flex flex-col gap-[0.5rem]">
-        <div className="flex flex-row items-center gap-[0.25rem]">
+        <div className="flex flex-row items-baseline gap-[0.5rem]">
           <p className="text-lg font-semibold">{props.user.firstName}</p>
-          <p className="text-sm text-slate-400">@{props.user.userName}</p>
+          <p className="text-md text-slate-400">@{props.user.userName}</p>
           {props.createdAt && (
             <p className="text-xs text-slate-400">
               {props.createdAt.toLocaleDateString("en-us", {
                 day: "2-digit",
-                hour: "2-digit",
+                hour: "numeric",
                 month: "short",
-                year: "2-digit",
               })}
             </p>
           )}
         </div>
         <div className="flex flex-col gap-[0.25rem]">
           <p className="text">{props.content}</p>
-          {props.mediaUrl && <img src={props.mediaUrl} alt="uploaded media" />}
+          {props.mediaUrl && (
+            <img
+              src={props.mediaUrl}
+              alt="uploaded media"
+              className="rounded-lg"
+            />
+          )}
         </div>
       </div>
     </div>
