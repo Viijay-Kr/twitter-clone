@@ -2,6 +2,7 @@ import { SignedIn, useUser } from "@clerk/nextjs";
 import LeftNav from "./layouts/LeftNav";
 import { Inconsolata } from "next/font/google";
 import classNames from "classnames";
+import RightNav from "./layouts/RightNav";
 
 const inconsolata = Inconsolata({
   subsets: ["latin"],
@@ -36,7 +37,9 @@ export default function Layout(props: React.PropsWithChildren) {
           {props.children}
         </main>
         <SignedIn>
-          <div className="basis-[25%] border-l border-slate-800"></div>
+          <div className="basis-[25%] border-l border-slate-800">
+            <RightNav />
+          </div>
         </SignedIn>
       </section>
       <footer></footer>

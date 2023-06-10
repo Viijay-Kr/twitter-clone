@@ -14,6 +14,7 @@ model User {
     followers User[]  @relation("UserFollows")
     Tweet     Tweet[] @relation("AuthoredTweets")
     bookmarks Tweet[] @relation("BookmarkedTweets")
+    likes     Tweet[] @relation("LikedTweets")
 }
 
 model Tweet {
@@ -23,6 +24,7 @@ model Tweet {
     userId       String
     mediaUrl     String?
     bookmarkedBy User[]   @relation("BookmarkedTweets")
+    likedBy      User[]   @relation("LikedTweets")
     createdAt    DateTime
 
     @@index([userId])

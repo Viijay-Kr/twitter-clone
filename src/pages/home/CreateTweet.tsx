@@ -58,7 +58,11 @@ export default function CreateTweet() {
           onChange={onTweetChange}
         />
         {activeMedia && (
-          <img className="rounded" src={activeMedia} alt="uploaded media" />
+          <img
+            className="w-[300px] rounded object-contain"
+            src={activeMedia}
+            alt="uploaded media"
+          />
         )}
         <div className="flex border-t border-slate-800 px-[1rem] pt-[1rem]">
           <UploadMedia
